@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Refer</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    
+        <a href="{{ url_for('index') }}"><h1>Refer</h1></a>
+        <div class="topnav">
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if session.logged_in %}
+                <a href="{{ url_for('add_post') }}">Add post</a>
+            {% endif %}
+            {% if session.logged_in %}
+                <a href="{{ url_for('logout') }}" id="logout">log out</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" id="logout">log in</a>
+            {% endif %}
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flash>
+                    {% for message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

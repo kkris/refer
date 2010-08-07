@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="time">{{ post.time }}</div>
+            <a href="{{ url_for('show_post', url=post.url) }}" class="title"><h2>{{ post.title }}</h2></a>
+            <div class="post-text">{{ post.post|safe }}</div>
+        </div>
+    {% else %}
+        <div>No posts so far</div>
+    {% endfor %}
+{% endblock body %}
